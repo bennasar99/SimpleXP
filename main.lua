@@ -53,3 +53,25 @@ function OnKilling(Victim, Killer)
 		return false
 	end
 end
+
+function OnPlayerRightClick(Player, BlockX, BlockY, BlockZ, BlockFace)
+	local BlockType = Player:GetWorld():GetBlock(BlockX, BlockY, BlockZ)
+	local HeldItem = Player:GetEquippedItem();
+	local HeldItemType = HeldItem.m_ItemType;
+	local ItemEnchant = HeldItem.m_Enchantments;
+	local level = math.floor(Player:GetCurrentXp() / 17);
+	if (BlockType == E_BLOCK_ENCHANTMENT_TABLE) then
+		if (HeldItemType == E_ITEM_WOODEN_PICKAXE) or (HeldItemType == E_ITEM_STONE_PICKAXE) or (HeldItemType == E_ITEM_IRON_PICKAXE) or (HeldItemType == E_ITEM_DIAMOND_PICKAXE) then
+			EnchantLevel = ItemEnchant:GetLevel(cEnchantments.enchEfficiency)
+			if (level < EnchantLevel + 1) then
+				Player:SendMessage("You haven't got the needed level to enchant your pickaxe")
+				return  true
+			else
+				ItemEnchant:SetLevel(cEnchantments.enchEfficiency, EnchantLevel + 1)
+				Player:SendMessage("Item Enchanted! Now relog")
+			end
+		else
+				Player:SendMessage("This item can't be enchanted")
+		end
+	end
+end
