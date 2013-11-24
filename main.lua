@@ -28,3 +28,28 @@ function OnPlayerBrokenBlock(Player, BlockX, BlockY, BlockZ, BlockFace, BlockTyp
 		end
 	end
 end
+
+function OnKilling(Victim, Killer)
+	if Killer == nil then
+		return false
+	end
+	if Killer:IsPlayer() then
+		Player = tolua.cast(Killer,"cPlayer")
+		if Victim:IsMob() then
+			if (Victim:IsA("cChicken")) or (Victim:IsA("cCow")) or (Victim:IsA("cHorse")) or (Victim:IsA("cMooshroom")) or (Victim:IsA("cCow")) or (Victim:IsA("cOcelot")) or (Victim:IsA("cPig")) or (Victim:IsA("cSheep")) or (Victim:IsA("cSquid")) or (Victim:IsA("cWolf")) then
+				Player:DeltaExperience(math.random(1,3))
+			elseif (Victim:IsA("cSlime")) or (Victim:IsA("cMagmaCube")) then
+				Player:DeltaExperience(math.random(2,3))
+			elseif (Victim:IsA("cBlaze")) then
+				Player:DeltaExperience(10)
+			elseif (Victim:IsA("cEnderDragon")) then
+				Player:DeltaExperience(12000)
+			elseif (Victim:IsA("cWither")) then
+				Player:DeltaExperience(50)
+			else
+				Player:DeltaExperience(math.random(5,8))
+			end
+		end
+		return false
+	end
+end
