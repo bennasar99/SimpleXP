@@ -15,7 +15,5 @@ TODO
 
 -More enchantments
 
--Remove xp when enchanting
-
 -How to enchant tutorial
 
