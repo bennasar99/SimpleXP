@@ -4,6 +4,7 @@ function Initialize(Plugin)
 	
 	PluginManager = cRoot:Get():GetPluginManager();
 	PluginManager:AddHook(cPluginManager.HOOK_PLAYER_BROKEN_BLOCK, OnPlayerBrokenBlock)
+	PluginManager:AddHook(cPluginManager.HOOK_PLAYER_RIGHT_CLICK, OnPlayerRightClick)
 
 	LOG("Initialized " .. Plugin:GetName() .. " v" .. Plugin:GetVersion())
 	return true;
@@ -69,9 +70,11 @@ function OnPlayerRightClick(Player, BlockX, BlockY, BlockZ, BlockFace)
 			else
 				ItemEnchant:SetLevel(cEnchantments.enchEfficiency, EnchantLevel + 1)
 				Player:SendMessage("Item Enchanted! Now relog")
+				local toremove = math.floor((EnchantLevel + 1) * 17)
+				Player:DeltaExperience(-toremove)
 			end
 		else
-				Player:SendMessage("This item can't be enchanted")
+			Player:SendMessage("This item can't be enchanted")
 		end
 	end
 end
