@@ -5,7 +5,7 @@ function Initialize(Plugin)
 	PluginManager = cRoot:Get():GetPluginManager();
 	PluginManager:AddHook(cPluginManager.HOOK_PLAYER_BROKEN_BLOCK, OnPlayerBrokenBlock)
 
-	LOG("Initialized " .. Plugin:GetName() .. " v" .. PLUGIN:GetVersion())
+	LOG("Initialized " .. Plugin:GetName() .. " v" .. Plugin:GetVersion())
 	return true;
 end
 
