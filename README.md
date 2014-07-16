@@ -1,19 +1,11 @@
 SimpleXP
 ========
 
-MCServer plugin that allows you to earn XP
+MCServer plugin that allows you to earn XP mining ores
 
-CURRENT FEATURES
+FEATURES
 
 -Earn XP mining ores.
 
--Earn XP killing monsters.
-
--Enchant pickaxes(Efficiency)
-
-TODO
-
--More enchantments
-
--How to enchant tutorial
+-Get quartz from quartz ore
 
